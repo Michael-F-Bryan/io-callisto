@@ -1,0 +1,11 @@
+{
+  "name": "io-callisto",
+  "version": "0.1.0",
+  "description": "A space-based realtime strategy game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}
