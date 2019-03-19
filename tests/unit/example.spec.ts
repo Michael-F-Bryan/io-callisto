@@ -1,12 +1,16 @@
 import { shallowMount } from '@vue/test-utils'
-import HelloWorld from '@/components/HelloWorld.vue'
+import InteractiveCanvas from '@/components/InteractiveCanvas.vue'
+import World from '@/game/World';
 
-describe('HelloWorld.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message'
-    const wrapper = shallowMount(HelloWorld, {
-      propsData: { msg }
-    })
-    expect(wrapper.text()).toMatch(msg)
-  })
-})
+describe('InteractiveCanvas.vue', () => {
+  it('renders as an empty canvas element', () => {
+    const world = new World();
+
+    const wrapper = shallowMount(InteractiveCanvas, {
+      propsData: { world }
+    });
+
+    expect(wrapper.element.nodeName).toEqual("CANVAS");
+    expect(wrapper.element.childNodes.length).toBe(0);
+  });
+});
