@@ -1,10 +1,13 @@
-import { Physics, HasPhysics, Orbiting } from './Physics';
+import { Physics, Orbiting, Physical } from './Physics';
+import { Renderable, Render } from './Render';
 
-export default class Satellite implements HasPhysics {
+export default class Satellite implements Physical, Renderable {
     physics: Physics;
+    render: Render;
 
-    constructor(physics: Physics) {
+    constructor(physics: Physics, render: Render) {
         this.physics = physics;
+        this.render = render;
     }
 
     get orbitalData(): Orbiting {

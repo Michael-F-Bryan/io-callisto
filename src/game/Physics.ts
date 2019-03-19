@@ -7,7 +7,7 @@ import World from './World';
  * @param deltaTime the number of seconds that have passed.
  */
 export function updateWorld(world: World, deltaTime: number) {
-
+    // TODO: Actually implement this...
 }
 
 /**
@@ -26,7 +26,7 @@ export class Physics {
 /**
  * Something which has a Physics component to it.
  */
-export interface HasPhysics {
+export interface Physical {
     readonly physics: Physics;
 }
 
@@ -43,18 +43,32 @@ export class Linear {
     }
 }
 
+/**
+ * Orbital motion.
+ */
 export class Orbiting {
-    parent: HasPhysics;
+    /**
+     * The object this entity is orbiting around.
+     */
+    parent: Physical;
     angularVelocity: number;
     isAntiClockwise: boolean;
     radius: number;
-    eccentricity: number;
 
-    constructor(parent: HasPhysics, angularVelocity: number, radius: number, isAntiClockwise: boolean = false, eccentricity: number = 1.0) {
+    constructor(parent: Physical, angularVelocity: number, radius: number, isAntiClockwise: boolean = false) {
         this.parent = parent;
         this.angularVelocity = angularVelocity;
         this.radius = radius;
         this.isAntiClockwise = isAntiClockwise;
-        this.eccentricity = eccentricity;
     }
+}
+
+/**
+ * A type guard for checking whether something implements the Physical 
+ * interface.
+ * 
+ * @param item The item to check.
+ */
+export function IsPhysical(item: any): item is Physical {
+    return item && item.physics instanceof Physics;
 }

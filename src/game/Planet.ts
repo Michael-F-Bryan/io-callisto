@@ -1,8 +1,11 @@
 import Vector2D from './Vector2D';
-import { Physics, Linear, HasPhysics } from './Physics';
-import { Render } from '@/game/Render';
+import { Physics, Linear, Physical } from './Physics';
+import { Render, Renderable } from '@/game/Render';
 
-export default class Planet implements HasPhysics {
+/**
+ * An immovable round body.
+ */
+export default class Planet implements Physical, Renderable {
     physics: Physics;
     render: Render;
 
