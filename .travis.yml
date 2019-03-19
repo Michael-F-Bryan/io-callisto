@@ -9,6 +9,9 @@ script:
   - yarn run test:unit
 
 before_deploy:
+  # We need to override the publicPath because docs serves from a sub-directory
+  - echo 'module.exports = {"publicPath":"/io-callisto/dist/"}' >> vue.config.js
+  - yarn run build
   - yarn run docs
   - mkdir pages
   - mv docs pages/docs
