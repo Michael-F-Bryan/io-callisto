@@ -7,7 +7,27 @@ import World from './World';
  * @param deltaTime the number of seconds that have passed.
  */
 export function updateWorld(world: World, deltaTime: number) {
-    // TODO: Actually implement this...
+    updatePhysicalObject(world.jupiter, deltaTime);
+}
+
+function updatePhysicalObject(item: Physical, dt: number) {
+    const p = item.physics;
+
+    if (p.motion instanceof Orbiting) {
+        p.currentLocation = updateOrbitalMotion(p.currentLocation, p.motion, dt);
+    } else if (p.motion instanceof Linear) {
+        p.currentLocation = updateLinearMotion(p.currentLocation, p.motion, dt);
+    } else {
+        throw "Well what type of motion is this then?!";
+    }
+}
+
+function updateOrbitalMotion(currentLocation: Vector2D, motion: Orbiting, dt: number): Vector2D {
+    throw "TODO: Implement This";
+}
+
+function updateLinearMotion(currentLocation: Vector2D, motion: Linear, dt: number): Vector2D {
+    throw "TODO: Implement This";
 }
 
 /**
