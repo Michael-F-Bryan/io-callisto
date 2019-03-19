@@ -1,7 +1,7 @@
 import Vector2D from './Vector2D';
-import { Physics, Linear } from './Physics';
+import { Physics, Linear, HasPhysics } from './Physics';
 
-export default class Planet {
+export default class Planet implements HasPhysics {
     physics: Physics;
 
     constructor(initialLocation: Vector2D) {

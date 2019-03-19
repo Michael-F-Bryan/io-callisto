@@ -47,14 +47,14 @@ export class Orbiting {
     parent: HasPhysics;
     angularVelocity: number;
     isAntiClockwise: boolean;
-    majorRadius: number;
-    minorRadius: number;
+    radius: number;
+    eccentricity: number;
 
-    constructor(parent: HasPhysics, angularVelocity: number, majorRadius: number, isAntiClockwise: boolean = false, minorRadius?: number) {
+    constructor(parent: HasPhysics, angularVelocity: number, radius: number, isAntiClockwise: boolean = false, eccentricity: number = 1.0) {
         this.parent = parent;
         this.angularVelocity = angularVelocity;
-        this.majorRadius = majorRadius;
+        this.radius = radius;
         this.isAntiClockwise = isAntiClockwise;
-        this.minorRadius = minorRadius || majorRadius;
+        this.eccentricity = eccentricity;
     }
 }

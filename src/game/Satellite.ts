@@ -1,6 +1,6 @@
 import { Physics, HasPhysics, Orbiting } from './Physics';
 
-export default class Satellite {
+export default class Satellite implements HasPhysics {
     physics: Physics;
 
     constructor(physics: Physics) {

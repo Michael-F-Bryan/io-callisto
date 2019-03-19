@@ -32,7 +32,7 @@ export default class World implements Interactive {
         if (this.recentTickIntervals.length == 0) {
             return 0;
         } else {
-            const total = this.recentTickIntervals.reduce((acc, elem) => acc + elem.valueOf(), 0);
+            const total = this.recentTickIntervals.reduce((acc, elem) => acc + elem, 0);
             return this.recentTickIntervals.length / total;
         }
     }
