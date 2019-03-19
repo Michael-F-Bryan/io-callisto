@@ -10,15 +10,15 @@ script:
 
 before_deploy:
   - yarn run docs
-  - mkdir public
-  - mv docs public/docs
-  - mv dist public/dist
+  - mkdir pages
+  - mv docs pages/docs
+  - mv dist pages/dist
 
 deploy:
   provider: pages
   skip-cleanup: true
   github-token: $GITHUB_TOKEN
   keep-history: true
-  local-dir: public
+  local-dir: pages
   on:
     branch: master
