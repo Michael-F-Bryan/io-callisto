@@ -1,11 +1,16 @@
-import { updateWorld } from './Physics';
+import { updateWorld } from '@/game/Physics';
+  import Planet from "@/game/Planet";
+  import Vector2D from "@/game/Vector2D";
+  import { renderWorld } from "@/game/Render";
 
 export default class World implements Interactive {
     recentTickIntervals: number[] = [];
+    jupiter: Planet = new Planet(new Vector2D(100, 100), 50);
 
     render(ctx: CanvasRenderingContext2D) {
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
+        renderWorld(this, ctx);
+        console.log("Rendering", this);
         this.writeFPS(ctx);
     }
 
