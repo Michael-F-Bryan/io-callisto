@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.com/Michael-F-Bryan/io-callisto.svg?branch=master)](https://travis-ci.com/Michael-F-Bryan/io-callisto)
 
+(**[API Docs]|[Playground]**)
+
 A space-based realtime strategy game focused on territorial expansion, 
 colonialism, and defence.
 
@@ -20,3 +22,6 @@ Then run the dev server:
 ```console
 $ yarn serve
 ```
+
+[Playground]: https://Michael-F-Bryan.github.io/io-callisto/dist
+[API Docs]: https://Michael-F-Bryan.github.io/io-callisto/docs
