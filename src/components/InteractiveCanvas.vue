@@ -3,20 +3,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import World from "@/game/World";
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import World, { Interactive, IsInteractive } from "@/game/World";
 
-@Component({
-    props: {
-        world: { type: World, required: true }
-    }
-})
+
+@Component({})
 export default class InteractiveCanvas extends Vue {
     token?: number;
     lastTick = new Date();
+    @Prop({ required: true, validator: IsInteractive })
+    world!: Interactive;
 
     mounted() {
         window.addEventListener("resize", this.onResize);
+        this.canvas.addEventListener("mousemove", this.onMouseMove);
         this.token = requestAnimationFrame(this.animate);
 
         this.onResize();
@@ -36,6 +36,16 @@ export default class InteractiveCanvas extends Vue {
     onResize() {
         this.canvas.height = window.innerHeight - this.canvas.offsetTop;
         this.canvas.width = window.innerWidth;
+
+        if (this.world.onCanvasResize) {
+            this.world.onCanvasResize(this.canvas.height, this.canvas.width);
+        }
+    }
+
+    onMouseMove(e: MouseEvent) {
+        if (this.world.onMouseMove) {
+            this.world.onMouseMove(e.x, e.y);
+        }
     }
 
     animate() {

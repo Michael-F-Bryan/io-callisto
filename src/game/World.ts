@@ -1,10 +1,9 @@
 import { updateWorld } from './Physics';
 
-export default class World {
+export default class World implements Interactive {
     recentTickIntervals: number[] = [];
 
     render(ctx: CanvasRenderingContext2D) {
-
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
         this.writeFPS(ctx);
@@ -37,4 +36,21 @@ export default class World {
             return this.recentTickIntervals.length / total;
         }
     }
+}
+
+/**
+ * Something which can be used by an interactive canvas.
+ */
+export interface Interactive {
+    render(ctx: CanvasRenderingContext2D): void;
+    update(deltaTime: number): void;
+
+    // optional event handlers
+
+    onMouseMove?(x: number, y: number): void;
+    onCanvasResize?(width: number, height: number): void;
+}
+
+export function IsInteractive(item: any): item is Interactive {
+    return typeof item.render == "function" && typeof item.update == "function";
 }
