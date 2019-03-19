@@ -13,6 +13,7 @@ import World from "@/game/World";
 })
 export default class InteractiveCanvas extends Vue {
     token?: number;
+    lastTick = new Date();
 
     mounted() {
         window.addEventListener("resize", this.onResize);
@@ -38,10 +39,15 @@ export default class InteractiveCanvas extends Vue {
     }
 
     animate() {
+        const now = new Date();
+        const dt = (now.valueOf() - this.lastTick.valueOf()) / 1000;
+        this.$props.world.update(dt);
+
         const ctx = this.canvas.getContext("2d");
         this.$props.world.render(ctx);
 
         this.token = requestAnimationFrame(this.animate);
+        this.lastTick = now;
     }
 
     get canvas(): HTMLCanvasElement {
