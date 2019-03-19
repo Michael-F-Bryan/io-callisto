@@ -27,6 +27,7 @@ export default class InteractiveCanvas extends Vue {
         // is destroyed
 
         window.removeEventListener("resize", this.onResize);
+        this.canvas.removeEventListener("mousemove", this.onMouseMove);
 
         if (this.token) {
             cancelAnimationFrame(this.token);
