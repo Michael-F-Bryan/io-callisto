@@ -2,6 +2,22 @@
   "name": "io-callisto",
   "version": "0.1.0",
   "private": true,
+  "maintainers": [
+    {
+      "name": "Michael-F-Bryan",
+      "email": "michaelfbryan@gmail.com"
+    },
+    {
+      "name": "eacao"
+    }
+  ],
+  "main": "src/main.ts",
+  "description": "A space-based realtime strategy game focused on territorial expansion, colonialism, and defence.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Michael-F-Bryan/io-callisto"
+  },
+  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
