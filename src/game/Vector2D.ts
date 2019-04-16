@@ -21,4 +21,12 @@ export default class Vector2D {
     get angle(): number {
         return Math.atan2(this.y, this.x);
     }
+
+    multiply(scaleFactor: number): Vector2D {
+        return new Vector2D(this.x * scaleFactor, this.y * scaleFactor);
+    }
+
+    add(other: Vector2D): Vector2D {
+        return new Vector2D(this.x + other.x, this.y + other.y);
+    }
 }

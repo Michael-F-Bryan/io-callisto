@@ -26,8 +26,9 @@ function updateOrbitalMotion(currentLocation: Vector2D, motion: Orbiting, dt: nu
     throw "TODO: Implement This";
 }
 
-function updateLinearMotion(currentLocation: Vector2D, motion: Linear, dt: number): Vector2D {
-    throw "TODO: Implement This";
+export function updateLinearMotion(currentLocation: Vector2D, motion: Linear, dt: number): Vector2D {
+    const delta = motion.velocity.multiply(dt);
+    return currentLocation.add(delta);
 }
 
 /**
@@ -84,9 +85,9 @@ export class Orbiting {
 }
 
 /**
- * A type guard for checking whether something implements the Physical 
+ * A type guard for checking whether something implements the Physical
  * interface.
- * 
+ *
  * @param item The item to check.
  */
 export function IsPhysical(item: any): item is Physical {
