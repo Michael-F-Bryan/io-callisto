@@ -4,7 +4,8 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import World, { Interactive, IsInteractive } from "@/game/World";
+import World from "@/game/World";
+import Interactive, {IsInteractive} from "@/game/Interactive";
 
 
 @Component({})
