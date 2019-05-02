@@ -1,4 +1,4 @@
-import { updateWorld } from '@/game/Physics';
+import { updateWorld, Linear } from '@/game/Physics';
 import Planet from "@/game/Planet";
 import Vector2D from "@/game/Vector2D";
 import { renderWorld } from "@/game/Render";
@@ -9,17 +9,28 @@ import Interactive from './Interactive';
  */
 export default class World implements Interactive {
     recentTickIntervals: number[] = [];
-    jupiter: Planet = new Planet(new Vector2D(100, 100), 50);
+    jupiter: Planet;
 
-    render(ctx: CanvasRenderingContext2D) {
+    constructor() {
+        this.jupiter = new Planet(new Vector2D(100, 100), 50);
+        //this.jupiter.physics.motion = new Linear(new Vector2D(10, 50));
+    }
+
+    public render(ctx: CanvasRenderingContext2D) {
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         renderWorld(this, ctx);
         this.writeFPS(ctx);
     }
 
-    update(deltaTime: number) {
+    public update(deltaTime: number) {
         this.pushTick(deltaTime);
         updateWorld(this, deltaTime);
+    }
+
+    onCanvasResize(width: number, height: number): void {
+        this.jupiter.physics.currentLocation = new Vector2D(width / 2, height / 2);
+        console.log(this.jupiter.physics);
     }
 
     private writeFPS(ctx: CanvasRenderingContext2D) {

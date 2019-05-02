@@ -14,6 +14,7 @@ export function renderWorld(world: World, ctx: CanvasRenderingContext2D) {
 function render(ctx: CanvasRenderingContext2D, item: Renderable) {
   const centre = item.physics.currentLocation;
 
+  ctx.beginPath();
   ctx.arc(centre.x, centre.y, item.render.radius, 0, Math.PI * 2);
   ctx.fillStyle = item.render.fillColour;
   ctx.fill();
