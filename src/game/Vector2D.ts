@@ -22,15 +22,20 @@ export default class Vector2D {
         return Math.atan2(this.y, this.x);
     }
 
-    multiply(scaleFactor: number): Vector2D {
+    public multiply(scaleFactor: number): Vector2D {
         return new Vector2D(this.x * scaleFactor, this.y * scaleFactor);
     }
 
-    add(other: Vector2D): Vector2D {
+    public add(other: Vector2D): Vector2D {
         return new Vector2D(this.x + other.x, this.y + other.y);
     }
 
     sub(other: Vector2D): Vector2D {
         return new Vector2D(this.x - other.x, this.y - other.y);
+    }
+
+    public toString(): string {
+        const { x, y } = this;
+        return `(${x}, ${y})`;
     }
 }

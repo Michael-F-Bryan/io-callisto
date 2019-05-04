@@ -1,8 +1,9 @@
-import { updateWorld, Linear } from '@/game/Physics';
+import { updateWorld, Physical, Physics, Orbiting } from '@/game/Physics';
 import Planet from "@/game/Planet";
 import Vector2D from "@/game/Vector2D";
-import { renderWorld } from "@/game/Render";
+import { renderWorld, Render, Renderable } from "@/game/Render";
 import Interactive from './Interactive';
+import Satellite from './Satellite';
 
 /**
  * The entire game world.
@@ -10,10 +11,13 @@ import Interactive from './Interactive';
 export default class World implements Interactive {
     recentTickIntervals: number[] = [];
     jupiter: Planet;
+    moon: Planet;
 
     constructor() {
         this.jupiter = new Planet(new Vector2D(100, 100), 50);
-        //this.jupiter.physics.motion = new Linear(new Vector2D(10, 50));
+
+        const physics = new Physics(new Vector2D(150, 200), new Orbiting(this.jupiter, 1, 150));
+        this.moon = new Satellite(physics, new Render(20, 'green'));
     }
 
     public render(ctx: CanvasRenderingContext2D) {
@@ -28,8 +32,16 @@ export default class World implements Interactive {
         updateWorld(this, deltaTime);
     }
 
-    onCanvasResize(width: number, height: number): void {
+    public onCanvasResize(width: number, height: number): void {
         this.jupiter.physics.currentLocation = new Vector2D(width / 2, height / 2);
+    }
+
+    public PhysicalObjects(): Physical[] {
+        return [this.jupiter, this.moon];
+    }
+
+    public Renderables(): Renderable[] {
+        return [this.jupiter, this.moon];
     }
 
     private writeFPS(ctx: CanvasRenderingContext2D) {

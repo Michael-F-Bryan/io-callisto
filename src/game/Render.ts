@@ -8,7 +8,9 @@ import { Physics } from "@/game/Physics";
  * @param ctx Context for the 2D canvas to be rendered on.
  */
 export function renderWorld(world: World, ctx: CanvasRenderingContext2D) {
-  render(ctx, world.jupiter);
+  for (const entity of world.Renderables()) {
+    render(ctx, entity);
+  }
 }
 
 function render(ctx: CanvasRenderingContext2D, item: Renderable) {
