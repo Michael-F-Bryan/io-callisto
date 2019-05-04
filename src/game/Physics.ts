@@ -10,8 +10,8 @@ export function updateWorld(world: World, deltaTime: number) {
     updatePhysicalObject(world.jupiter, deltaTime);
 }
 
-function updatePhysicalObject(item: Physical, dt: number) {
-    const p = item.physics;
+function updatePhysicalObject(entity: Physical, dt: number) {
+    const p = entity.physics;
 
     if (p.motion instanceof Orbiting) {
         p.currentLocation = updateOrbitalMotion(p.currentLocation, p.motion, dt);
@@ -23,7 +23,14 @@ function updatePhysicalObject(item: Physical, dt: number) {
 }
 
 function updateOrbitalMotion(currentLocation: Vector2D, motion: Orbiting, dt: number): Vector2D {
-    throw "TODO: Implement This";
+    const parentLocation = motion.parent.physics.currentLocation;
+    const angle = currentLocation.sub(parentLocation).angle;
+    const newAngle = angle + motion.angularVelocity * dt;
+
+    const dx = motion.radius * Math.cos(newAngle);
+    const dy = motion.radius * Math.sin(newAngle);
+
+    return new Vector2D(parentLocation.x + dx, parentLocation.y + dy);
 }
 
 export function updateLinearMotion(currentLocation: Vector2D, motion: Linear, dt: number): Vector2D {

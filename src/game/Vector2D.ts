@@ -29,4 +29,8 @@ export default class Vector2D {
     add(other: Vector2D): Vector2D {
         return new Vector2D(this.x + other.x, this.y + other.y);
     }
+
+    sub(other: Vector2D): Vector2D {
+        return new Vector2D(this.x - other.x, this.y - other.y);
+    }
 }
