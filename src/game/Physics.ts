@@ -22,7 +22,7 @@ function updatePhysicalObject(entity: Physical, dt: number) {
     }
 }
 
-function updateOrbitalMotion(currentLocation: Vector2D, motion: Orbiting, dt: number): Vector2D {
+export function updateOrbitalMotion(currentLocation: Vector2D, motion: Orbiting, dt: number): Vector2D {
     const parentLocation = motion.parent.physics.currentLocation;
     const angle = currentLocation.sub(parentLocation).angle;
     const newAngle = angle + motion.angularVelocity * dt;

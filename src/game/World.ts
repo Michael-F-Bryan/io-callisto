@@ -30,7 +30,6 @@ export default class World implements Interactive {
 
     onCanvasResize(width: number, height: number): void {
         this.jupiter.physics.currentLocation = new Vector2D(width / 2, height / 2);
-        console.log(this.jupiter.physics);
     }
 
     private writeFPS(ctx: CanvasRenderingContext2D) {
