@@ -7,7 +7,9 @@ import World from './World';
  * @param deltaTime the number of seconds that have passed.
  */
 export function updateWorld(world: World, deltaTime: number) {
-    updatePhysicalObject(world.jupiter, deltaTime);
+    for (const entity of world.PhysicalObjects()) {
+        updatePhysicalObject(entity, deltaTime);
+    }
 }
 
 function updatePhysicalObject(entity: Physical, dt: number) {
