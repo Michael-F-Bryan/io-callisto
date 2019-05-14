@@ -1,4 +1,5 @@
-import { Orbiting, Linear } from '@/game/Physics';
+import { Linear } from "@/game/Linear";
+import { Orbiting } from "@/game/Orbiting";
 import Vector2D from '@/game/Vector2D';
 import Planet from '@/game/Planet';
 

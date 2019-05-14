@@ -52,50 +52,6 @@ export interface Motion {
     nextState(currentLocation: Vector2D, dt: number): [Vector2D, Motion];
 }
 
-export class Linear implements Motion {
-    velocity: Vector2D;
-    constructor(velocity?: Vector2D) {
-        this.velocity = velocity || new Vector2D(0, 0);
-    }
-    nextState(currentLocation: Vector2D, dt: number): [Vector2D, Motion] {
-        const delta = this.velocity.multiply(dt);
-        const newLocation = currentLocation.add(delta);
-        return [newLocation, this];
-    }
-}
-
-/**
- * Orbital motion.
- */
-export class Orbiting implements Motion {
-    /**
-     * The object this entity is orbiting around.
-     */
-    parent: Physical;
-    angularVelocity: number;
-    isAntiClockwise: boolean;
-    radius: number;
-
-    constructor(parent: Physical, angularVelocity: number, radius: number, isAntiClockwise: boolean = false) {
-        this.parent = parent;
-        this.angularVelocity = angularVelocity;
-        this.radius = radius;
-        this.isAntiClockwise = isAntiClockwise;
-    }
-
-    nextState(currentLocation: Vector2D, dt: number): [Vector2D, Motion] {
-        const parentLocation = this.parent.physics.currentLocation;
-        const angle = currentLocation.sub(parentLocation).angle;
-        const newAngle = angle + this.angularVelocity * dt;
-
-        const dx = this.radius * Math.cos(newAngle);
-        const dy = this.radius * Math.sin(newAngle);
-
-        const newLocation = new Vector2D(parentLocation.x + dx, parentLocation.y + dy);
-        return [newLocation, this];
-    }
-}
-
 /**
  * A type guard for checking whether something implements the Physical
  * interface.

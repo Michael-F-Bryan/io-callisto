@@ -1,4 +1,5 @@
-import { updateWorld, Linear } from '@/game/Physics';
+import { updateWorld } from '@/game/Physics';
+import { Linear } from "@/game/Linear";
 import Planet from "@/game/Planet";
 import Vector2D from "@/game/Vector2D";
 import { renderWorld } from "@/game/Render";
