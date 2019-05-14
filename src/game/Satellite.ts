@@ -1,4 +1,5 @@
-import { Physics, Orbiting, Physical } from './Physics';
+import { Physics, Physical } from './Physics';
+import { Orbiting } from "./Orbiting";
 import { Renderable, Render } from './Render';
 
 export default class Satellite implements Physical, Renderable {

@@ -1,5 +1,6 @@
 import Vector2D from './Vector2D';
-import { Physics, Linear, Physical } from './Physics';
+import { Physics, Physical } from './Physics';
+import { Linear } from "./Linear";
 import { Render, Renderable } from '@/game/Render';
 
 /**
