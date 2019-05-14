@@ -1,4 +1,4 @@
-import { Linear, updateLinearMotion, updateOrbitalMotion, Orbiting } from '@/game/Physics';
+import { Orbiting, Linear } from '@/game/Physics';
 import Vector2D from '@/game/Vector2D';
 import Planet from '@/game/Planet';
 
@@ -12,7 +12,7 @@ describe('Linear motion', () => {
         const motion = new Linear(new Vector2D(1, 0));
         const initialPosition = new Vector2D(500, 100);
 
-        const newPosition = updateLinearMotion(initialPosition, motion, 2);
+        const [newPosition] = motion.nextState(initialPosition, 2);
 
         expect(newPosition.y).toBe(initialPosition.y);
         expect(newPosition.x).toBe(initialPosition.x + 2 * motion.velocity.x);
@@ -27,7 +27,7 @@ describe('Circular motion', () => {
         const motion = new Orbiting(parent, radsPerSecond, 100, true);
         const initialPosition = new Vector2D(motion.radius, 0);
 
-        const newPosition = updateOrbitalMotion(initialPosition, motion, 0.25);
+        const [newPosition] = motion.nextState(initialPosition, 0.25);
 
         const expectedPosition = new Vector2D(0, motion.radius);
         expect(newPosition.x).toBeCloseTo(expectedPosition.x);
